@@ -1,7 +1,7 @@
 {
   "name": "commonform-compare",
   "description": "compare Common Forms",
-  "version": "0.4.0",
+  "version": "0.0.0-prerelease",
   "author": "Kyle E. Mitchell <kyle@kemitchell.com> (http://kemitchell.com)",
   "dependencies": {
     "rfc6902-json-diff": "^0.1.2"
@@ -27,9 +27,10 @@
   "repository": "commonform/commonform-compare",
   "scripts": {
     "check": "check-versions --check-module",
-    "coverage": "istanbul cover _mocha && istanbul check-coverage coverage/coverage.json",
-    "lint": "jshint source test && jscs source test",
-    "pre-commit": "npm run check && npm run lint && npm run coverage",
-    "test": "mocha"
+    "coverage": "istanbul check-coverage --config .dotfiles/istanbul.yml coverage/coverage.json",
+    "lint": "jshint --config .dotfiles/jshint.json source test && jscs --config .dotfiles/jscs.json source test",
+    "precommit": "npm run check && npm run lint && npm run coverage",
+    "precoverage": "istanbul cover --config .dotfiles/istanbul.yml -- _mocha --opts .dotfiles/mocha.opts",
+    "test": "mocha --opts .dotfiles/mocha.opts"
   }
 }
